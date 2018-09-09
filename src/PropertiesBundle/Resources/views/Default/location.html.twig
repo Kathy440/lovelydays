@@ -1,0 +1,58 @@
+<p>Test</p>
+ {% for propertie in properties %}
+ <table>
+        <tr>
+            
+            <td class="trait">{{ propertie.location }}</td>
+
+        </tr>
+</table>
+        
+{% endfor %}
+
+
+
+  <!-- <script language = "javascript" 
+      src = "https://code.jquery.com/jquery-2.2.4.min.js"></script> 
+   
+   <script language = "javascript">  
+      $(document).ready(function(){   
+         $("#loadstudent").on("click", function(event){  
+            $.ajax({  
+               url:        '/PropertiesBundle:Default:location.html.twig',  
+               type:       'POST',   
+               dataType:   'json',  
+               async:      true,  
+               
+               success: function(data, status) {  
+                  var e = $('<tr><th>Location</th><th>Rooms</th></tr>');  
+                  $('#propertie').html('');  
+                  $('#propertie').append(e);  
+                  
+                  for(i = 0; i < data.length; i++) {  
+                     student = data[i];  
+                     var e = $('<tr><td id = "location"></td><td id = "rooms"></td></tr>');
+                     
+                     $('#location', e).html(propertie['location']);  
+                     $('#rooms', e).html(propertie['rooms']);  
+                     $('#propertie').append(e);  
+                  }  
+               },  
+               error : function(xhr, textStatus, errorThrown) {  
+                  alert('Ajax request failed.');  
+               }  
+            });  
+         });  
+      });  
+   </script> 
+
+
+
+   <a id ="loadstudent" href ="#">Load student information</a>  
+   </br> 
+   </br>  
+   
+   <table class ="table">  
+      <tbody id ="propertie"></tbody>  
+   </table>     
+-->

@@ -1,0 +1,14 @@
+.titre{
+    color: orangered;
+}
+
+
+
+.trait{
+    border: 1px solid black;
+    font-family: monospace;
+}
+
+.formulaire{
+    display: inline-grid
+}

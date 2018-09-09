@@ -1,0 +1,68 @@
+{% extends '@Properties/Default/base.html.twig' %}
+
+
+{% block body %}
+{{ form_start(form)}}
+
+            <div class="form-group  formulaire">
+                <div class="form-group col-md-6 test">
+
+                    {{ form_label(form.name, 'Votre nom') }}
+                    {{ form_widget(form.name, {
+                        'attr': {
+                            'class': "ma_class",
+                            'placeholder': "entrer un pseudo"}
+                    }
+                    ) }}
+                    {{ form_errors(form.name) }}
+                </div>
+
+                <div class="form-group col-md-6 test">
+                    {{ form_label(form.location) }}
+                    {{ form_widget(form.location, {
+                        'attr': {
+                            'placeholder': "Le lieux"}
+                    }
+                    ) }}
+                    {{ form_errors(form.location) }}
+                </div>
+
+                <div class="form-group col-md-6 test">
+                    {{ form_label(form.pricing) }}
+                    {{ form_widget(form.pricing, {
+                        'attr': {
+                            'placeholder': "Le Prix"}
+                    }
+                    ) }}
+                    {{ form_errors(form.pricing) }}
+                </div>
+
+                <div class="form-group col-md-6 test">
+                    {{ form_label(form.rooms) }}
+                    {{ form_widget(form.rooms, {
+                        'attr': {
+                            'placeholder': "Nombre de piece"}
+                    }
+                    ) }}
+                    {{ form_errors(form.rooms) }}
+                </div>
+
+                <div class="form-group col-md-6 test">
+                    {{ form_label(form.maxGuests) }}
+                    {{ form_widget(form.maxGuests, {
+                        'attr': {
+                            'placeholder': "Nombre max de personnes"}
+                    }
+                    ) }}
+                    {{ form_errors(form.maxGuests) }}
+                </div>
+
+
+                <div class="btn btn-outline-info test">
+                    {{ form_label(form.submit, 'Envoyer') }}
+                    {{ form_widget(form.submit) }}
+                </div>
+            </div>
+{{ form_end(form) }}
+
+{% endblock %}

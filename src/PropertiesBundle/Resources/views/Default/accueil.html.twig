@@ -1,0 +1,92 @@
+{% extends '@Properties/Default/base.html.twig' %}
+
+{% block body %}
+
+
+    <h1 class="titre">Les properties</h1>
+</br>
+<p>Search properties</p>
+
+
+<form method="post" action="">
+    <input type="text" id="mot_cle">   
+</form>
+
+<div id="results">
+    <ul class="result">
+    
+    {% for propertie in properties %}      
+     
+            <li><a id="resultats_location" href="{{ path('properties_homepage', {'id': propertie.id}) }}"> {{ propertie.location }}</a></li>
+            
+    {% endfor %}
+    </ul>
+</div>
+
+<script type="text/javascript">
+$(document).ready( function() {
+        if (!jQuery('body').hasClass('searching')) {
+            $('#mot_cle').keyup(function (e) {
+                var contenu = $('#mot_cle').val();
+                $('#results').html('');
+                if (contenu.length > 2) {
+                    jQuery('#results').addClass('miniload');
+                    jQuery('#results').append('<div id="chargement">Chargement...<div id="spinner" class="spinner"></div></div>');
+                    setTimeout( function() {
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ path('properties_search') }}",
+                            data: 'mot_cle=' + contenu,
+                            success: function (data) {
+                                jQuery('body').addClass('searching');
+                                $('#results').html('');
+                                jQuery('#chargement').remove();
+                                $('#results').html(data);
+                                return;
+                            },
+                            complete : function(){
+                                jQuery('#chargement').remove();
+                                return jQuery('body').removeClass('searching');
+                            }
+                        });
+                    }, 1000);
+                }
+            });
+        }
+        
+      
+    });
+
+</script>
+
+<table class="table">
+        <tr class="trait">
+            <th class="trait">ID</th>
+            <th class="trait">Nom</th>
+            <th class="trait">Location</th>
+            <th class="trait">Pricing</th>
+            <th class="trait">Rooms</th>
+            <th class="trait">max Guests</th>
+            <th class="trait">Suprimé</th>
+            <th class="trait">Modifier</th>
+        </tr>
+
+        {% for propertie in properties %}
+        <tr>
+            <td class="trait">{{ propertie.id }}</td>
+            <td class="trait">{{ propertie.name}}</td>
+            <td class="trait">{{ propertie.location }}</td>
+            <td class="trait">{{ propertie.pricing}} E / Night</td>
+            <td class="trait">{{ propertie.rooms}}</td>
+            <td class="trait">{{ propertie.maxGuests}}</td>
+            <td class="trait">
+                <a class="btn btn-danger btn-xm glyphicon glyphicon-trash" href="{{ path('properties_deleteById', {'id': propertie.id})  }}" ></a>
+            </td>
+                  <td class="trait">
+                    <a class="btn btn-warning btn-xm glyphicon glyphicon-edit" href="{{ path('properties_update', {'id': propertie.id }) }}"></a>
+                </td>
+                      
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

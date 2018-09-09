@@ -1,0 +1,11 @@
+test:
+    resource: "@TestBundle/Resources/config/routing.xml"
+    prefix:   bouh/
+
+properties:
+    resource: "@PropertiesBundle/Resources/config/routing.xml"
+    prefix:   properties/
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
